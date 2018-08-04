@@ -1,28 +1,28 @@
 SHELL = /bin/bash
 
-reports::
-clean::
+report.dat: report.py reports
+	python3 report.py > report.dat
 
 define mk
-reports:: design$(1)-$(2)-$(3)-arachne.rpt design$(1)-$(2)-$(3)-nextpnr.rpt
+reports:: design$(1)-$(2)-arachne-$(3).rpt design$(1)-$(2)-nextpnr-$(3).rpt
 
 clean::
-	rm -f design$(1)-$(2)-$(3)-arachne.rpt design$(1)-$(2)-$(3)-nextpnr.rpt
-	rm -f design$(1)-$(2)-$(3)-arachne.asc design$(1)-$(2)-$(3)-nextpnr.asc
-	rm -f design$(1)-$(2)-$(3)-arachne.log design$(1)-$(2)-$(3)-nextpnr.log
+	rm -f design$(1)-$(2)-arachne-$(3).rpt design$(1)-$(2)-nextpnr-$(3).rpt
+	rm -f design$(1)-$(2)-arachne-$(3).asc design$(1)-$(2)-nextpnr-$(3).asc
+	rm -f design$(1)-$(2)-arachne-$(3).log design$(1)-$(2)-nextpnr-$(3).log
 	rm -f design$(1)-yosys.log design$(1).blif design$(1).json
 
-design$(1)-$(2)-$(3)-arachne.rpt: design$(1)-$(2)-$(3)-arachne.asc
-	-icetime -m -r design$(1)-$(2)-$(3)-arachne.rpt -d $(2) design$(1)-$(2)-$(3)-arachne.asc
+design$(1)-$(2)-arachne-$(3).rpt: design$(1)-$(2)-arachne-$(3).asc
+	-icetime -m -r design$(1)-$(2)-arachne-$(3).rpt -d $(2) design$(1)-$(2)-arachne-$(3).asc
 
-design$(1)-$(2)-$(3)-nextpnr.rpt: design$(1)-$(2)-$(3)-nextpnr.asc
-	-icetime -m -r design$(1)-$(2)-$(3)-nextpnr.rpt -d $(2) design$(1)-$(2)-$(3)-nextpnr.asc
+design$(1)-$(2)-nextpnr-$(3).rpt: design$(1)-$(2)-nextpnr-$(3).asc
+	-icetime -m -r design$(1)-$(2)-nextpnr-$(3).rpt -d $(2) design$(1)-$(2)-nextpnr-$(3).asc
 
-design$(1)-$(2)-$(3)-arachne.asc: design$(1).blif design$(1)-$(2).pcf
-	-timeout 30m arachne-pnr -d $(subst hx,,$(subst lp,,$(subst up,,$(2)))) -p design$(1)-$(2).pcf -o design$(1)-$(2)-$(3)-arachne.asc -s 1$(3) design$(1).blif 2>&1 | ts -s '=%s=' > design$(1)-$(2)-$(3)-arachne.log
+design$(1)-$(2)-arachne-$(3).asc: design$(1).blif design$(1)-$(2).pcf
+	-timeout 30m arachne-pnr -d $(subst hx,,$(subst lp,,$(subst up,,$(2)))) -p design$(1)-$(2).pcf -o design$(1)-$(2)-arachne-$(3).asc -s 1$(3) design$(1).blif 2>&1 | ts -s '=%s=' > design$(1)-$(2)-$(3)-arachne.log
 
-design$(1)-$(2)-$(3)-nextpnr.asc: design$(1).json design$(1)-$(2).pcf
-	-timeout 30m nextpnr-ice40 --$(2) --pcf design$(1)-$(2).pcf --asc design$(1)-$(2)-$(3)-nextpnr.asc --seed 1$(3) --json design$(1).json 2>&1 | ts -s '=%s=' > design$(1)-$(2)-$(3)-nextpnr.log
+design$(1)-$(2)-nextpnr-$(3).asc: design$(1).json design$(1)-$(2).pcf
+	-timeout 30m nextpnr-ice40 --$(2) --pcf design$(1)-$(2).pcf --asc design$(1)-$(2)-nextpnr-$(3).asc --seed 1$(3) --json design$(1).json 2>&1 | ts -s '=%s=' > design$(1)-$(2)-nextpnr-$(3).log
 
 ifndef design_ys_$(1)
 design_ys_$(1) = 1
