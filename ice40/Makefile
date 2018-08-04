@@ -32,7 +32,8 @@ design$(1).json: design$(1).v
 endif
 endef
 
-$(foreach i,0 1 2 3 4 5 6 7 8 9,$(eval $(call mk,01,hx8k,$(i))))
-$(foreach i,0 1 2 3 4 5 6 7 8 9,$(eval $(call mk,02,hx1k,$(i))))
-$(foreach i,0 1 2 3 4 5 6 7 8 9,$(eval $(call mk,02,hx8k,$(i))))
-$(foreach i,0 1 2 3 4 5 6 7 8 9,$(eval $(call mk,03,up5k,$(i))))
+iters = 0 1 2 3 4 5 6 7 8 9
+$(foreach i,$(iters),$(eval $(call mk,01,hx8k,$(i))))
+$(foreach i,$(iters),$(eval $(call mk,02,hx1k,$(i))))
+$(foreach i,$(iters),$(eval $(call mk,02,hx8k,$(i))))
+$(foreach i,$(iters),$(eval $(call mk,03,up5k,$(i))))
