@@ -1,9 +1,10 @@
-/design*-*-*-arachne.rpt
-/design*-*-*-nextpnr.rpt
-/design*-*-*-arachne.asc
-/design*-*-*-nextpnr.asc
-/design*-*-*-arachne.log
-/design*-*-*-nextpnr.log
+/design*-*-arachne-*.rpt
+/design*-*-nextpnr-*.rpt
+/design*-*-arachne-*.asc
+/design*-*-nextpnr-*.asc
+/design*-*-arachne-*.log
+/design*-*-nextpnr-*.log
 /design*-yosys.log
 /design*.blif
 /design*.json
+/report.dat
