@@ -119,7 +119,7 @@ data = dict()
 def load(filename):
     global data
     data = dict()
-    with open("report.dat", "r") as f:
+    with open(filename, "r") as f:
         for line in f:
             line = line.split()
             if line[0] in ("DATA", "ERROR"):
@@ -186,6 +186,7 @@ def print_summary():
     plt.figure(figsize=(9, 2))
 
     plt.subplot(1, 2, 1)
+    plt.plot([-0.5, 1.5*len(designs)], [0, 0], 'k')
     plt.bar(1.5*np.arange(len(designs)), maxfreq_deltas, 1, color='m')
     plt.ylabel("MHz")
     plt.xlabel("(nextpnr maxfreq) - (arachne maxfreq)")
@@ -193,6 +194,7 @@ def print_summary():
     plt.xticks([], [])
 
     plt.subplot(1, 2, 2)
+    plt.plot([-0.5, 1.5*len(designs)], [0, 0], 'k')
     plt.bar(1.5*np.arange(len(designs)), runtime_deltas, 1, color='c')
     plt.ylabel("minutes")
     plt.xlabel("(arachne runtime) - (nextpnr runtime)")
