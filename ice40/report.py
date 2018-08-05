@@ -154,12 +154,12 @@ def median(d, t, key):
 #####################################################################
 
 def print_summary():
-    print("                          |      Max Freq (MHz)   |      Runtime (M:SS)   |")
-    print("                   design |    arachne    nextpnr |    arachne    nextpnr |")
-    print("            --------------+-----------------------+-----------------------+")
+    print("                  |      Max Freq (MHz)              |      Runtime (M:SS)            |")
+    print("           design |    arachne    nextpnr     change |    arachne    nextpnr   change |")
+    print("  ----------------+----------------------------------+--------------------------------+")
 
     maxfreq_deltas = np.zeros(len(designs))
-    runtime_deltas = np.zeros(len(designs))
+    runtime_factor = np.zeros(len(designs))
 
     for idx, d in enumerate(designs):
         maxfreq_arachne = median(d, "arachne", "maxfreq")
@@ -170,7 +170,8 @@ def print_summary():
 
         if maxfreq_arachne is not None and maxfreq_nextpnr is not None:
             maxfreq_deltas[idx] = maxfreq_nextpnr - maxfreq_arachne
-        runtime_deltas[idx] = (runtime_arachne - runtime_nextpnr) / 60
+
+        runtime_factor[idx] = runtime_nextpnr / runtime_arachne
 
         if maxfreq_arachne is None:
             maxfreq_arachne = 0
@@ -178,10 +179,11 @@ def print_summary():
         if maxfreq_nextpnr is None:
             maxfreq_nextpnr = 0
 
-        print("%25s | %10.2f %10.2f | %7d:%02d %7d:%02d |" % (d,
-              maxfreq_arachne, maxfreq_nextpnr,
+        print("%17s | %10.2f %10.2f %+10.2f | %7d:%02d %7d:%02d %7.2fx |" % (d,
+              maxfreq_arachne, maxfreq_nextpnr, maxfreq_nextpnr - maxfreq_arachne,
               runtime_arachne // 60, runtime_arachne % 60,
-              runtime_nextpnr // 60, runtime_nextpnr % 60))
+              runtime_nextpnr // 60, runtime_nextpnr % 60,
+              runtime_nextpnr / runtime_arachne))
 
     plt.figure(figsize=(9, 2))
 
@@ -194,10 +196,9 @@ def print_summary():
     plt.xticks([], [])
 
     plt.subplot(1, 2, 2)
-    plt.plot([-0.5, 1.5*len(designs)], [0, 0], 'k')
-    plt.bar(1.5*np.arange(len(designs)), runtime_deltas, 1, color='c')
-    plt.ylabel("minutes")
-    plt.xlabel("(arachne runtime) - (nextpnr runtime)")
+    plt.bar(1.5*np.arange(len(designs)), runtime_factor, 1, color='c')
+    plt.ylabel(" ")
+    plt.xlabel("(nextpnr runtime) / (arachne runtime)")
     plt.xlim(-0.5, 1.5*len(designs))
     plt.xticks([], [])
 
