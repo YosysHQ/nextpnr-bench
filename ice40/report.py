@@ -274,6 +274,7 @@ def plot_est_maxfreq(d):
 
     plt.subplot(1, 2, 2)
 
+    plt.plot([-0.5, 15], [0, 0], 'k')
     plt.bar(np.arange(10)*1.5, estmaxf_values - maxf_values, 1.0, color='m')
 
     plt.ylabel("MHz")
