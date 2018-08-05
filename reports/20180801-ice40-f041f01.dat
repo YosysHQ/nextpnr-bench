@@ -1,0 +1,84 @@
+DATA design01-hx8k arachne 0  28.20   0.00 339 238 101
+DATA design01-hx8k arachne 1  27.77   0.00 346 244 102
+DATA design01-hx8k arachne 2  27.24   0.00 358 263 95
+ERROR design01-hx8k arachne 3 fatal error: failed to route
+DATA design01-hx8k arachne 4  27.36   0.00 362 256 106
+DATA design01-hx8k arachne 5  27.50   0.00 400 264 136
+DATA design01-hx8k arachne 6  28.76   0.00 363 265 98
+DATA design01-hx8k arachne 7  25.36   0.00 390 257 133
+DATA design01-hx8k arachne 8  28.01   0.00 351 259 92
+DATA design01-hx8k arachne 9  30.87   0.00 356 258 98
+DATA design01-hx8k nextpnr 0   0.00  34.55 1800 787 1013
+DATA design01-hx8k nextpnr 1   0.00  32.88 1800 795 1005
+DATA design01-hx8k nextpnr 2   0.00  33.18 1800 806 994
+DATA design01-hx8k nextpnr 3   0.00  34.32 1800 829 971
+DATA design01-hx8k nextpnr 4   0.00  34.93 1800 835 965
+DATA design01-hx8k nextpnr 5   0.00  35.79 1800 847 953
+DATA design01-hx8k nextpnr 6   0.00  33.18 1800 858 942
+DATA design01-hx8k nextpnr 7   0.00  33.62 1800 825 975
+DATA design01-hx8k nextpnr 8   0.00  34.71 1800 816 984
+DATA design01-hx8k nextpnr 9   0.00  32.15 1800 795 1005
+DATA design02-hx1k arachne 0  53.50   0.00 28 22 6
+DATA design02-hx1k arachne 1  53.97   0.00 26 20 6
+DATA design02-hx1k arachne 2  53.76   0.00 25 20 5
+DATA design02-hx1k arachne 3  55.40   0.00 28 23 5
+DATA design02-hx1k arachne 4  55.40   0.00 27 22 5
+DATA design02-hx1k arachne 5  54.35   0.00 27 21 6
+DATA design02-hx1k arachne 6  63.57   0.00 28 23 5
+DATA design02-hx1k arachne 7  56.63   0.00 28 24 4
+DATA design02-hx1k arachne 8  55.31   0.00 26 21 5
+DATA design02-hx1k arachne 9  60.50   0.00 25 20 5
+ERROR design02-hx1k nextpnr 0 ERROR: failed to place cell '$abc$9063$auto$blifparse.cc:465:parse_blif$9526_LC' of type 'ICESTORM_LC' (ripup iteration limit exceeded)
+ERROR design02-hx1k nextpnr 0 ERROR: Placing design failed.
+DATA design02-hx1k nextpnr 1  58.24  58.95 93 88 5
+DATA design02-hx1k nextpnr 2  62.19  62.82 96 91 5
+DATA design02-hx1k nextpnr 3  66.45  67.24 94 89 5
+ERROR design02-hx1k nextpnr 4 ERROR: failed to place cell '$abc$9063$auto$blifparse.cc:465:parse_blif$9910_LC' of type 'ICESTORM_LC' (ripup iteration limit exceeded)
+ERROR design02-hx1k nextpnr 4 ERROR: Placing design failed.
+DATA design02-hx1k nextpnr 5  62.54  64.11 94 88 6
+ERROR design02-hx1k nextpnr 6 ERROR: failed to place cell '$abc$9063$auto$blifparse.cc:465:parse_blif$9485_LC' of type 'ICESTORM_LC' (ripup iteration limit exceeded)
+ERROR design02-hx1k nextpnr 6 ERROR: Placing design failed.
+ERROR design02-hx1k nextpnr 7 ERROR: failed to place cell '$auto$alumacc.cc:474:replace_alu$311.slice[0].adder_LC' of type 'ICESTORM_LC' (ripup iteration limit exceeded)
+ERROR design02-hx1k nextpnr 7 ERROR: Placing design failed.
+DATA design02-hx1k nextpnr 8  67.75  68.43 96 91 5
+DATA design02-hx1k nextpnr 9  60.10  60.26 95 91 4
+DATA design02-hx8k arachne 0  60.53   0.00 45 24 21
+DATA design02-hx8k arachne 1  60.50   0.00 43 23 20
+DATA design02-hx8k arachne 2  57.34   0.00 43 23 20
+DATA design02-hx8k arachne 3  53.05   0.00 45 25 20
+DATA design02-hx8k arachne 4  53.42   0.00 44 23 21
+DATA design02-hx8k arachne 5  60.17   0.00 43 24 19
+DATA design02-hx8k arachne 6  53.50   0.00 45 24 21
+DATA design02-hx8k arachne 7  58.48   0.00 44 23 21
+DATA design02-hx8k arachne 8  53.82   0.00 42 22 20
+DATA design02-hx8k arachne 9  58.79   0.00 43 23 20
+DATA design02-hx8k nextpnr 0  66.27  67.82 127 115 12
+DATA design02-hx8k nextpnr 1  64.68  65.90 126 114 12
+DATA design02-hx8k nextpnr 2  59.77  59.98 134 119 15
+DATA design02-hx8k nextpnr 3  64.89  65.43 127 114 13
+DATA design02-hx8k nextpnr 4  65.66  66.22 125 114 11
+DATA design02-hx8k nextpnr 5  66.62  67.63 125 114 11
+DATA design02-hx8k nextpnr 6  67.70  68.54 125 113 12
+DATA design02-hx8k nextpnr 7  64.06  64.80 127 115 12
+DATA design02-hx8k nextpnr 8  69.93  70.01 126 115 11
+DATA design02-hx8k nextpnr 9  65.62  66.09 127 116 11
+DATA design03-up5k arachne 0   6.07   0.00 333 161 172
+DATA design03-up5k arachne 1   6.43   0.00 254 164 90
+DATA design03-up5k arachne 2   6.45   0.00 251 168 83
+DATA design03-up5k arachne 3   6.71   0.00 248 173 75
+DATA design03-up5k arachne 4   6.12   0.00 266 158 108
+DATA design03-up5k arachne 5   6.55   0.00 268 159 109
+DATA design03-up5k arachne 6   7.03   0.00 225 167 58
+DATA design03-up5k arachne 7   6.32   0.00 244 166 78
+DATA design03-up5k arachne 8   5.99   0.00 290 161 129
+DATA design03-up5k arachne 9   6.53   0.00 265 163 102
+DATA design03-up5k nextpnr 0   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 1   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 2   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 3   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 4   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 5   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 6   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 7   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 8   0.00   0.00 1800 0 0
+DATA design03-up5k nextpnr 9   0.00   0.00 1800 0 0
