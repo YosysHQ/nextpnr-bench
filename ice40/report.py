@@ -19,6 +19,7 @@ for d in designs:
         for i in range(10):
             error = False
             maxfreq = None
+            estmaxfreq = None
             runtime = None
             runtime_place = None
             runtime_route = None
@@ -32,13 +33,15 @@ for d in designs:
                             if "After placement:" in line:
                                 runtime_place = runtime
                             if "error:" in line:
-                                print("%s %s %d ERROR %s" % (d, t, i, line))
+                                print("ERROR %s %s %d %s" % (d, t, i, line))
                                 error = True
                         if t == "nextpnr":
                             if "starting routing procedure" in line:
                                 runtime_place = runtime
+                            if "Info: estimated Fmax = " in line:
+                                estmaxfreq = float(line.split()[4])
                             if "ERROR" in line:
-                                print("%s %s %d ERROR %s" % (d, t, i, line))
+                                print("ERROR %s %s %d %s" % (d, t, i, line))
                                 error = True
             if not error:
                 with open("%s-%s-%d.rpt" % (d, t, i), "r") as f:
@@ -49,9 +52,14 @@ for d in designs:
                 if maxfreq is None:
                     maxfreq = 0
                     runtime = 30*60
+                if estmaxfreq is None:
+                    estmaxfreq = 0
                 if runtime_place is not None:
                     runtime_route = runtime - runtime_place
-                runtime = 0 if runtime is None else runtime
-                runtime_place = 0 if runtime_place is None else runtime_place
-                runtime_route = 0 if runtime_route is None else runtime_route
-                print("%s %s %d DATA %6.2f %d %d %d" % (d, t, i, maxfreq, runtime, runtime_place, runtime_route))
+                if runtime is None:
+                    runtime = 0
+                if runtime_place is None:
+                    runtime_place = 0
+                if runtime_route is None:
+                    runtime_route = 0
+                print("DATA %s %s %d %6.2f %6.2f %d %d %d" % (d, t, i, maxfreq, estmaxfreq, runtime, runtime_place, runtime_route))
