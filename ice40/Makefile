@@ -3,6 +3,9 @@ SHELL = /bin/bash
 report.dat: report.py reports
 	python3 report.py > report.dat
 
+clean::
+	rm -f report.dat
+
 define mk
 reports:: design$(1)-$(2)-arachne-$(3).rpt design$(1)-$(2)-nextpnr-$(3).rpt
 
