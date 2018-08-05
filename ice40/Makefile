@@ -12,16 +12,16 @@ clean::
 	rm -f design$(1)-$(2)-arachne-$(3).log design$(1)-$(2)-nextpnr-$(3).log
 	rm -f design$(1)-yosys.log design$(1).blif design$(1).json
 
-design$(1)-$(2)-arachne-$(3).rpt: design$(1)-$(2)-arachne-$(3).asc
+design$(1)-$(2)-arachne-$(3).rpt: design$(1)-$(2)-arachne-$(3).log
 	-icetime -m -r design$(1)-$(2)-arachne-$(3).rpt -d $(2) design$(1)-$(2)-arachne-$(3).asc
 
-design$(1)-$(2)-nextpnr-$(3).rpt: design$(1)-$(2)-nextpnr-$(3).asc
+design$(1)-$(2)-nextpnr-$(3).rpt: design$(1)-$(2)-nextpnr-$(3).log
 	-icetime -m -r design$(1)-$(2)-nextpnr-$(3).rpt -d $(2) design$(1)-$(2)-nextpnr-$(3).asc
 
-design$(1)-$(2)-arachne-$(3).asc: design$(1).blif design$(1)-$(2).pcf
-	-timeout 30m arachne-pnr -d $(subst hx,,$(subst lp,,$(subst up,,$(2)))) -p design$(1)-$(2).pcf -o design$(1)-$(2)-arachne-$(3).asc -s 1$(3) design$(1).blif 2>&1 | ts -s '=%s=' > design$(1)-$(2)-$(3)-arachne.log
+design$(1)-$(2)-arachne-$(3).log: design$(1).blif design$(1)-$(2).pcf
+	-timeout 30m arachne-pnr -d $(subst hx,,$(subst lp,,$(subst up,,$(2)))) -p design$(1)-$(2).pcf -o design$(1)-$(2)-arachne-$(3).asc -s 1$(3) design$(1).blif 2>&1 | ts -s '=%s=' > design$(1)-$(2)-arachne-$(3).log
 
-design$(1)-$(2)-nextpnr-$(3).asc: design$(1).json design$(1)-$(2).pcf
+design$(1)-$(2)-nextpnr-$(3).log: design$(1).json design$(1)-$(2).pcf
 	-timeout 30m nextpnr-ice40 --$(2) --pcf design$(1)-$(2).pcf --asc design$(1)-$(2)-nextpnr-$(3).asc --seed 1$(3) --json design$(1).json 2>&1 | ts -s '=%s=' > design$(1)-$(2)-nextpnr-$(3).log
 
 ifndef design_ys_$(1)

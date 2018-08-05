@@ -41,7 +41,7 @@ for d in designs:
                                 print("%s %s %d ERROR %s" % (d, t, i, line))
                                 error = True
             if not error:
-                with open("%s-%d-%s.rpt" % (d, i, t), "r") as f:
+                with open("%s-%s-%d.rpt" % (d, t, i), "r") as f:
                     for line in f:
                         if line.startswith("Total path delay:"):
                             line = line.split()
