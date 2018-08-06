@@ -292,25 +292,34 @@ def plot_est_maxfreq(d):
 def plot_place_route(d):
     plt.figure(figsize=(9, 2))
 
-    for plot_idx, t in ((0, "arachne"), (1, "nextpnr")):
+    for plot_idx, task in ((0, "place"), (1, "route")):
         plt.subplot(1, 2, plot_idx+1)
+        plt.title(task)
 
-        place_values = np.zeros(10)
-        route_values = np.zeros(10)
+        arachne_values = np.zeros(10)
+        nextpnr_values = np.zeros(10)
 
         for i in range(10):
-            if data[d, t, i].maxfreq != 0:
-                place_values[i] = data[d, t, i].runtime_place / 60
-                route_values[i] = data[d, t, i].runtime_route / 60
+            if data[d, "arachne", i].maxfreq != 0:
+                arachne_values[i] = data[d, "arachne", i]["runtime_" + task] / 60
+            if data[d, "nextpnr", i].maxfreq != 0:
+                nextpnr_values[i] = data[d, "nextpnr", i]["runtime_" + task] / 60
 
-        plt.bar(np.arange(10)*1.5, place_values, 0.5, color='r', label="place")
-        plt.bar(np.arange(10)*1.5+0.5, route_values, 0.5, color='g', label="route")
+        arachne_median = median(d, "arachne", "runtime_" + task)
+        nextpnr_median = median(d, "nextpnr", "runtime_" + task)
 
-        plt.legend(loc='lower left', prop={'size': 6})
+        plt.bar(np.arange(10), arachne_values, 1, color='r')
+        plt.bar(np.arange(10)+15, nextpnr_values, 1, color='g')
+
+        if arachne_median is not None:
+            plt.plot([-2.7, +12.7], [arachne_median / 60, arachne_median / 60], ":k")
+
+        if nextpnr_median is not None:
+            plt.plot([15-2.7, 15+12.7], [nextpnr_median / 60, nextpnr_median / 60], ":k")
+
         plt.ylabel("runtime (min)")
-        plt.xlabel(t)
-        plt.xlim(-0.5, 15)
-        plt.xticks([], [])
+        plt.xlim(-1, 26)
+        plt.xticks([5, 20], ["arachne", "nextpnr"])
 
     plt.suptitle(d)
     plt.subplots_adjust(wspace=0.3, top=0.8)
