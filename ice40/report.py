@@ -115,6 +115,7 @@ class DataEntry:
         return "DataEntry(%s)" % ", ".join(args)
 
 data = dict()
+errors = list()
 
 def load(filename):
     global data
@@ -128,6 +129,7 @@ def load(filename):
                     data[d, t, i] = DataEntry()
                 if line[0] == "ERROR":
                     data[d, t, i].add_error(" ".join(line[4:]))
+                    errors.append(" ".join(line))
                 if line[0] == "DATA":
                     data[d, t, i].add_data(*line[4:])
 
@@ -204,6 +206,9 @@ def print_summary():
 
     plt.subplots_adjust(wspace=0.3, top=0.8)
     plt.show()
+
+    for err in errors:
+        print(err)
 
 #####################################################################
 
