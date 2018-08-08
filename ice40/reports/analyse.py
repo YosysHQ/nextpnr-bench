@@ -11,6 +11,7 @@ datafiles = """
 20180801-ice40-f041f01
 20180803-ice40-f9a9da6
 20180804-ice40-528eddc
+20180808-ice40-b326b03
 """.split()
 
 # data[design][datafile][tool][datatype] = median_value
@@ -87,7 +88,7 @@ def plot_runtime(field):
 
     plt.legend(loc='lower left', prop={'size': 6})
     plt.ylabel("nextpnr / arachne (runtime)")
-    plt.xticks(list(xticks.keys()), list(xticks.values()))
+    plt.xticks(list(xticks.keys()), list(xticks.values()), rotation=30)
     plt.grid()
     plt.show()
 
@@ -112,7 +113,7 @@ def plot_maxfreq(field):
 
     plt.legend(loc='lower left', prop={'size': 6})
     plt.ylabel("nextpnr - arachne (MHz)")
-    plt.xticks(list(xticks.keys()), list(xticks.values()))
+    plt.xticks(list(xticks.keys()), list(xticks.values()), rotation=30)
     plt.grid()
     plt.show()
 
