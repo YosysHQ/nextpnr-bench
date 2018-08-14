@@ -40,8 +40,9 @@ Just upload a `.zip` file with the relevant data and a include a short
 description of the benchmark in the issue description.
 
 The benchmark should be a design using a single clock domain. The HDL code should be a single
-synthesizable Verilog (`.v`) file. The `.zip` may contain additional `.hex` files to be read
-using `$readmemh` in the HDL code. The `.zip` should also contain a `.pcf` file for one or more
-target devices.
+synthesizable Verilog (`.v`) file. The name of the top module should be `top`.
+The `.zip` may contain additional `.hex` files to be read using `$readmemh` in
+the Verilog code. The `.zip` should also contain a `.pcf` file for one or more
+iCE40 target devices.
 
-Benchmarks should be real-world designs, not "hello world" examples nor synthetic benchmarks.
+Benchmarks should be real-world designs, not "hello world" examples or synthetic benchmarks.
