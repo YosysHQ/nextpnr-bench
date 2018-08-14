@@ -156,11 +156,11 @@ def median(d, t, key):
 #####################################################################
 
 def print_summary():
-    print("                  |      Max Freq (MHz)              |      Runtime (M:SS)            |")
-    print("           design |    arachne    nextpnr     change |    arachne    nextpnr   change |")
-    print("  ----------------+----------------------------------+--------------------------------+")
+    print("                  |      Max Freq (MHz)            |      Runtime (M:SS)            |")
+    print("           design |    arachne    nextpnr   change |    arachne    nextpnr   change |")
+    print("  ----------------+--------------------------------+--------------------------------+")
 
-    maxfreq_deltas = np.zeros(len(designs))
+    maxfreq_factor = np.zeros(len(designs))
     runtime_factor = np.zeros(len(designs))
 
     for idx, d in enumerate(designs):
@@ -171,7 +171,7 @@ def print_summary():
         runtime_nextpnr = median(d, "nextpnr", "runtime")
 
         if maxfreq_arachne is not None and maxfreq_nextpnr is not None:
-            maxfreq_deltas[idx] = maxfreq_nextpnr - maxfreq_arachne
+            maxfreq_factor[idx] = maxfreq_nextpnr / maxfreq_arachne
 
         runtime_factor[idx] = runtime_nextpnr / runtime_arachne
 
@@ -181,8 +181,9 @@ def print_summary():
         if maxfreq_nextpnr is None:
             maxfreq_nextpnr = 0
 
-        print("%17s | %10.2f %10.2f %+10.2f | %7d:%02d %7d:%02d %7.2fx |" % (d,
-              maxfreq_arachne, maxfreq_nextpnr, maxfreq_nextpnr - maxfreq_arachne,
+        print("%17s | %10.2f %10.2f %7.2fx | %7d:%02d %7d:%02d %7.2fx |" % (d,
+              maxfreq_arachne, maxfreq_nextpnr,
+              maxfreq_nextpnr / maxfreq_arachne,
               runtime_arachne // 60, runtime_arachne % 60,
               runtime_nextpnr // 60, runtime_nextpnr % 60,
               runtime_nextpnr / runtime_arachne))
@@ -191,15 +192,15 @@ def print_summary():
 
     plt.subplot(1, 2, 1)
     plt.plot([-0.5, 1.5*len(designs)], [0, 0], 'k')
-    plt.bar(1.5*np.arange(len(designs)), maxfreq_deltas, 1, color='m')
-    plt.ylabel("MHz")
-    plt.xlabel("(nextpnr maxfreq) - (arachne maxfreq)")
+    plt.bar(1.5*np.arange(len(designs)), maxfreq_factor, 1, color='m')
+    plt.ylabel("MHz / MHz")
+    plt.xlabel("(nextpnr maxfreq) / (arachne maxfreq)")
     plt.xlim(-0.5, 1.5*len(designs))
     plt.xticks([], [])
 
     plt.subplot(1, 2, 2)
     plt.bar(1.5*np.arange(len(designs)), runtime_factor, 1, color='c')
-    plt.ylabel(" ")
+    plt.ylabel("min / min")
     plt.xlabel("(nextpnr runtime) / (arachne runtime)")
     plt.xlim(-0.5, 1.5*len(designs))
     plt.xticks([], [])
@@ -281,10 +282,10 @@ def plot_est_maxfreq(d):
     plt.subplot(1, 2, 2)
 
     plt.plot([-0.5, 15], [0, 0], 'k')
-    plt.bar(np.arange(10)*1.5, estmaxf_values - maxf_values, 1.0, color='m')
+    plt.bar(np.arange(10)*1.5, maxf_values - estmaxf_values, 1.0, color='m')
 
     plt.ylabel("MHz")
-    plt.xlabel("(estimated Fmax) - (actual Fmax)")
+    plt.xlabel("(actual Fmax) - (estimated Fmax)")
     plt.xlim(-0.5, 15)
     plt.xticks([], [])
 

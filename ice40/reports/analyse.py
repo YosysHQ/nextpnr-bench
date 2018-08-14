@@ -12,6 +12,7 @@ datafiles = """
 20180803-ice40-f9a9da6
 20180804-ice40-528eddc
 20180808-ice40-b326b03
+20180811-ice40-2e02f2d
 """.split()
 
 # data[design][datafile][tool][datatype] = median_value
@@ -89,6 +90,12 @@ def plot_runtime(field):
     plt.legend(loc='lower left', prop={'size': 6})
     plt.ylabel("nextpnr / arachne (runtime)")
     plt.xticks(list(xticks.keys()), list(xticks.values()), rotation=30)
+    if field == "runtime":
+        plt.ylim(0, 5.0)
+    if field == "runtime_place":
+        plt.ylim(0, 6.0)
+    if field == "runtime_route":
+        plt.ylim(0, 2.0)
     plt.grid()
     plt.show()
 
@@ -107,13 +114,14 @@ def plot_maxfreq(field):
             if "nextpnr" not in data[d][df]:
                 continue
             X.append(datafile2time[df][0])
-            Y.append(data[d][df]["nextpnr"][field] - data[d][df]["arachne"][field])
+            Y.append(data[d][df]["nextpnr"][field] / data[d][df]["arachne"][field])
             xticks[datafile2time[df][0]] = datafile2time[df][1]
         plt.plot(X, Y, label=d)
 
     plt.legend(loc='lower left', prop={'size': 6})
-    plt.ylabel("nextpnr - arachne (MHz)")
+    plt.ylabel("nextpnr / arachne (max frequency)")
     plt.xticks(list(xticks.keys()), list(xticks.values()), rotation=30)
+    plt.ylim(1.0, 1.3)
     plt.grid()
     plt.show()
 
