@@ -1,6 +1,6 @@
 SHELL = /bin/bash
 
-report.dat: report.py reports
+report.dat: reports/report.py reports
 	python3 reports/report.py > report.dat
 
 clean::
