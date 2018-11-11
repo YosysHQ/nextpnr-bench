@@ -13,16 +13,26 @@ datafiles = """
 20180804-ice40-528eddc
 20180808-ice40-b326b03
 20180811-ice40-2e02f2d
+20181111-ice40-b8870bb
 """.split()
 
 # data[design][datafile][tool][datatype] = median_value
 data = dict()
 
+last_time = None
+time_skipped = datetime.timedelta()
 datafile2time = dict()
 
 for df in datafiles:
     with open(df + ".dat", "r") as f:
-        dt = datetime.datetime(int(df[0:4]), int(df[4:6]), int(df[6:8]))
+        dt = datetime.datetime(int(df[0:4]), int(df[4:6]), int(df[6:8])) - time_skipped
+
+        if (last_time is not None) and (last_time + datetime.timedelta(10) < dt):
+            new_dt = last_time + datetime.timedelta(10)
+            time_skipped += dt - new_dt
+            dt = new_dt
+        last_time = dt
+
         datafile2time[df] = (time.mktime(dt.timetuple()), "%s-%s-%s" % (df[0:4], df[4:6], df[6:8]))
         for line in f:
             line = line.split()
