@@ -1,7 +1,8 @@
 iCE40 benchmarks for [nextpnr](https://github.com/YosysHQ/nextpnr).
 
 Display archived benchmark results with nbviewer:
-- [20181111-ice40-b8870bb.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20181111-ice40-b8870bb.ipynb) (latest)
+- [20181114-ice40-3b2b15d.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20181114-ice40-3b2b15d.ipynb) (latest)
+- [20181111-ice40-b8870bb.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20181111-ice40-b8870bb.ipynb)
 - [20180811-ice40-2e02f2d.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20180811-ice40-2e02f2d.ipynb)
 - [20180808-ice40-b326b03.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20180808-ice40-b326b03.ipynb)
 - [20180804-ice40-528eddc.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20180804-ice40-528eddc.ipynb)
@@ -20,7 +21,7 @@ design01 (hx8k)
 ---------------
 
 This is the iCE40HX8K example design for [PicoSoC](https://github.com/cliffordwolf/picorv32/tree/master/picosoc). This
-includes an version of PicoRV32.
+includes a version of PicoRV32.
 
 design02 (hx1k, hx8k)
 ---------------------

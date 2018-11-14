@@ -14,6 +14,7 @@ datafiles = """
 20180808-ice40-b326b03
 20180811-ice40-2e02f2d
 20181111-ice40-b8870bb
+20181114-ice40-3b2b15d
 """.split()
 
 # data[design][datafile][tool][datatype] = median_value
