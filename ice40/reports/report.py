@@ -38,7 +38,7 @@ if __name__== "__main__":
                                     print("ERROR %s %s %d %s" % (d, t, i, line))
                                     error = True
                             if t == "nextpnr":
-                                if "starting routing procedure" in line:
+                                if ("starting routing procedure" in line) or line.endswith("Info: Routing.."):
                                     runtime_place = runtime
                                 if "Info: estimated Fmax = " in line:
                                     estmaxfreq = float(line.split()[4])
