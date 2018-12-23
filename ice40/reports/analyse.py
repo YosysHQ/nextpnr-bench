@@ -15,6 +15,7 @@ datafiles = """
 20180811-ice40-2e02f2d
 20181111-ice40-b8870bb
 20181114-ice40-3b2b15d
+20181223-ice40-e76479f
 """.split()
 
 # data[design][datafile][tool][datatype] = median_value
@@ -129,10 +130,10 @@ def plot_maxfreq(field):
             xticks[datafile2time[df][0]] = datafile2time[df][1]
         plt.plot(X, Y, label=d)
 
-    plt.legend(loc='lower left', prop={'size': 6})
+    plt.legend(loc='upper left', prop={'size': 6})
     plt.ylabel("nextpnr / arachne (max frequency)")
     plt.xticks(list(xticks.keys()), list(xticks.values()), rotation=30)
-    plt.ylim(1.0, 1.3)
+    plt.ylim(1.0, 1.4)
     plt.grid()
     plt.show()
 
