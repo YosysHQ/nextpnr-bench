@@ -40,8 +40,17 @@ if __name__== "__main__":
                             if t == "nextpnr":
                                 if ("starting routing procedure" in line) or line.endswith("Info: Routing.."):
                                     runtime_place = runtime
-                                if "Info: estimated Fmax = " in line:
-                                    estmaxfreq = float(line.split()[4])
+                                if runtime_place is not None:
+                                    if "Info: Max frequency " in line:
+                                        freq = float(line.split()[-6])
+                                        if estmaxfreq is None:
+                                            estmaxfreq = freq
+                                        estmaxfreq = min(estmaxfreq, freq)
+                                    if "Info: Max delay " in line:
+                                        freq = 1000.0 / float(line.split()[-2])
+                                        if estmaxfreq is None:
+                                            estmaxfreq = freq
+                                        estmaxfreq = min(estmaxfreq, freq)
                                 if "ERROR" in line:
                                     print("ERROR %s %s %d %s" % (d, t, i, line))
                                     error = True

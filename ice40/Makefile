@@ -25,7 +25,7 @@ design$(1)-$(2)-arachne-$(3).log: design$(1).blif design$(1)-$(2).pcf
 	-timeout 30m arachne-pnr -d $(subst hx,,$(subst lp,,$(subst up,,$(2)))) -p design$(1)-$(2).pcf -o design$(1)-$(2)-arachne-$(3).asc -s 1$(3) design$(1).blif 2>&1 | ts -s '=%s=' > design$(1)-$(2)-arachne-$(3).log
 
 design$(1)-$(2)-nextpnr-$(3).log: design$(1).json design$(1)-$(2).pcf
-	-timeout 30m nextpnr-ice40 --$(2) --pcf design$(1)-$(2).pcf --asc design$(1)-$(2)-nextpnr-$(3).asc --seed 1$(3) --json design$(1).json 2>&1 | ts -s '=%s=' > design$(1)-$(2)-nextpnr-$(3).log
+	-timeout 30m nextpnr-ice40 --$(2) --pcf design$(1)-$(2).pcf --asc design$(1)-$(2)-nextpnr-$(3).asc --seed 1$(3) --freq $(4) --json design$(1).json 2>&1 | ts -s '=%s=' > design$(1)-$(2)-nextpnr-$(3).log
 
 ifndef design_ys_$(1)
 design_ys_$(1) = 1
@@ -36,7 +36,7 @@ endif
 endef
 
 iters = 0 1 2 3 4 5 6 7 8 9
-$(foreach i,$(iters),$(eval $(call mk,01,hx8k,$(i))))
-$(foreach i,$(iters),$(eval $(call mk,02,hx1k,$(i))))
-$(foreach i,$(iters),$(eval $(call mk,02,hx8k,$(i))))
-$(foreach i,$(iters),$(eval $(call mk,03,up5k,$(i))))
+$(foreach i,$(iters),$(eval $(call mk,01,hx8k,$(i),30)))
+$(foreach i,$(iters),$(eval $(call mk,02,hx1k,$(i),50)))
+$(foreach i,$(iters),$(eval $(call mk,02,hx8k,$(i),50)))
+$(foreach i,$(iters),$(eval $(call mk,03,up5k,$(i),7)))
