@@ -1,7 +1,8 @@
 iCE40 benchmarks for [nextpnr](https://github.com/YosysHQ/nextpnr).
 
 Display archived benchmark results with nbviewer:
-- [20190219-ice40-4c73061.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20190219-ice40-4c73061.ipynb) (latest)
+- [20190325-ice40-0d064c0.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20190325-ice40-0d064c0.ipynb) (latest)
+- [20190219-ice40-4c73061.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20190219-ice40-4c73061.ipynb)
 - [20181223-ice40-e76479f.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20181223-ice40-e76479f.ipynb)
 - [20181114-ice40-3b2b15d.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20181114-ice40-3b2b15d.ipynb)
 - [20181111-ice40-b8870bb.ipynb](https://nbviewer.jupyter.org/github/YosysHQ/nextpnr-bench/blob/master/ice40/reports/20181111-ice40-b8870bb.ipynb)

@@ -17,7 +17,21 @@ datafiles = """
 20181114-ice40-3b2b15d
 20181223-ice40-e76479f
 20190219-ice40-4c73061
+20190325-ice40-0d064c0
 """.split()
+
+displaydates = set("""
+2018-08-01
+#2018-08-03
+#2018-08-04
+#2018-08-08
+2018-08-11
+#2018-11-11
+2018-11-14
+2018-12-23
+2019-02-19
+2019-03-25
+""".split())
 
 # data[design][datafile][tool][datatype] = median_value
 data = dict()
@@ -97,7 +111,10 @@ def plot_runtime(field):
                 continue
             X.append(datafile2time[df][0])
             Y.append(data[d][df]["nextpnr"][field] / data[d][df]["arachne"][field])
-            xticks[datafile2time[df][0]] = datafile2time[df][1]
+            if datafile2time[df][1] in displaydates:
+                xticks[datafile2time[df][0]] = datafile2time[df][1]
+            else:
+                xticks[datafile2time[df][0]] = ""
         plt.plot(X, Y, label=d)
 
     plt.legend(loc='lower left', prop={'size': 6})
@@ -128,7 +145,10 @@ def plot_maxfreq(field):
                 continue
             X.append(datafile2time[df][0])
             Y.append(data[d][df]["nextpnr"][field] / data[d][df]["arachne"][field])
-            xticks[datafile2time[df][0]] = datafile2time[df][1]
+            if datafile2time[df][1] in displaydates:
+                xticks[datafile2time[df][0]] = datafile2time[df][1]
+            else:
+                xticks[datafile2time[df][0]] = ""
         plt.plot(X, Y, label=d)
 
     plt.legend(loc='upper left', prop={'size': 6})
