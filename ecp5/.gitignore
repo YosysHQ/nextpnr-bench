@@ -1,0 +1,5 @@
+/design*-*-nextpnr-*.config
+/design*-*-nextpnr-*.log
+/design*-yosys.log
+/design*.json
+/report.dat
